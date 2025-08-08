@@ -1,101 +1,35 @@
-## 📅 Day 1 – WhatsApp – Group Messaging Analysis
+WhatsApp Group Messaging Analysis
 
-### 📌 Problem Statement
+Overview:-
 
-As a Product Analyst on the **WhatsApp team**, the goal is to understand **group messaging dynamics** for groups created in **October 2024**.
-We want insights into **group sizes** and **engagement levels**.
+This repository contains analysis of group messaging dynamics on WhatsApp for groups created in October 2024. The goal is to understand group sizes and engagement levels.
 
-**Challenge Questions**
+Challenge Questions:-
 
-1. **Q1:** What is the maximum number of participants among groups created in October 2024?
-2. **Q2:** What is the average number of participants in groups created in October 2024?
-3. **Q3:** For groups with more than 50 participants created in October 2024, what is the average number of messages sent?
+1. Q1: What is the maximum number of participants among groups created in October 2024?
+2. Q2: What is the average number of participants in groups created in October 2024?
+3. Q3: For groups with more than 50 participants created in October 2024, what is the average number of messages sent?
 
----
+Dataset:-
 
-### 📂 Dataset Used
+- *dim_groups table*:
+    - group_id: Unique group identifier
+    - created_date: Date group was created
+    - participant_count: Number of participants in the group
+    - total_messages: Total number of messages sent in the group
 
-* **dim\_groups** table:
+Analysis Code:-
 
-  * `group_id` – Unique group identifier
-  * `created_date` – Date group was created
-  * `participant_count` – Number of participants in the group
-  * `total_messages` – Total number of messages sent in the group
+Python scripts using Pandas for data processing and analysis.
 
----
+Outputs (Sample Data):-
 
-### 💻 My Solutions
-
-#### Q1 – Maximum Participants in October 2024 Groups
-
-```python
-# Convert to datetime
-dim_groups['created_date'] = pd.to_datetime(dim_groups['created_date'])
-
-# Filter October 2024
-october_groups = dim_groups[
-    (dim_groups['created_date'].dt.year == 2024) &
-    (dim_groups['created_date'].dt.month == 10)
-]
-
-# Find maximum participants
-max_participants = october_groups['participant_count'].max()
-print(max_participants)
-```
-
----
-
-#### Q2 – Average Participants in October 2024 Groups
-
-```python
-# Ensure datetime conversion
-dim_groups['created_date'] = pd.to_datetime(dim_groups['created_date'])
-
-# Filter October 2024
-october_groups = dim_groups[
-    (dim_groups['created_date'].dt.year == 2024) &
-    (dim_groups['created_date'].dt.month == 10)
-]
-
-# Calculate average participants
-avg_participants = october_groups['participant_count'].mean()
-print(round(avg_participants, 2))
-```
-
----
-
-#### Q3 – Average Messages in Large Groups (>50 participants)
-
-```python
-# Convert to datetime
-dim_groups['created_date'] = pd.to_datetime(dim_groups['created_date'])
-
-# Filter October 2024 and large groups
-filtered_groups = dim_groups[
-    (dim_groups['created_date'].dt.year == 2024) &
-    (dim_groups['created_date'].dt.month == 10) &
-    (dim_groups['participant_count'] > 50)
-]
-
-# Calculate average messages
-avg_messages = filtered_groups['total_messages'].mean()
-print(round(avg_messages, 2))
-```
-
----
-
-### 📈 Output Example (Sample Data)
-
-```
 Q1) 200
 Q2) 45.67
 Q3) 1289.45
-```
 
----
 
-### 🛠 Tools Used
+Tools Used:-
 
-* **Python** – Data processing and analysis
-* **Pandas** – Data filtering and aggregation
-
+- Python: Data processing and analysis
+- Pandas: Data filtering and aggregation

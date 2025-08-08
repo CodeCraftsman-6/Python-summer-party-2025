@@ -1,0 +1,68 @@
+DAY 1
+
+WhatsApp
+
+You are a Product Analyst on the WhatsApp team investigating group messaging dynamics.
+Your team wants to understand how large groups are being used and their messaging
+patterns. You'll leverage data to uncover insights about group participation and
+communication behaviors.
+
+Challenge Questions
+
+Q1:What is the maximum number of participants among WhatsApp groups that were created in October2024? 
+  This metric will help us understand the largest group size available.
+Q2:What is the average number of participants in WhatsApp groups that were created in October 2024?
+  This number will indicate the typical group size and inform our group messaging feature considerations.
+Q3:For WhatsApp groups with more than 50 participants that were created in October 2024, what is theaverage number of messages sent? 
+  This insight will help assess engagement in larger groups andsupport recommendations for group messaging features.
+
+My Solution - Q1
+Day 1 Python Challenge
+
+My Solution-Q1
+
+# Note: pandas and numpy are already imported as pd and np
+# The following tables are loaded as pandas DataFrames with th
+e same names: dim_groups
+# Please print your final result or dataframe
+# Step 1: Convert 'created_date' to datetime
+dim_groups['created_date'] = pd.to_datetime(dim_groups['create
+d_date'])
+# Step 2: Filter for groups created in October 2024
+october_groups = dim_groups[
+(dim_groups['created_date'].dt.year == 2024) &
+(dim_groups['created_date'].dt.month == 10)
+# Step 3: Find the maximum participant count
+max_participants = october_groups['participant_count'].max()
+# Step 4: Print the result
+print(max_participants)
+
+My Solution-Q2
+
+# Step 1: Convert 'created_date' to datetime (in case not done
+yet)
+dim_groups['created_date'] = pd.to_datetime(dim_groups['create
+d_date'])
+# Step 2: Filter for October 2024
+october_groups = dim_groups[
+(dim_groups['created_date'].dt.year == 2024) &
+(dim_groups['created_date'].dt.month == 10)
+# Step 3: Calculate average participant count
+avg_participants = october_groups['participant_count'].mean()
+# Step 4: Print the result (rounded to 2 decimal places)
+print(round(avg_participants, 2))
+
+My Solution-Q3
+
+# Step 1: Convert 'created_date' to datetime
+dim_groups['created_date'] = pd.to_datetime(dim_groups['create
+d_date'])
+# Step 2: Filter for October 2024 AND participant_count > 50
+filtered_groups = dim_groups[
+(dim_groups['created_date'].dt.year == 2024) &
+(dim_groups['created_date'].dt.month == 10) &
+(dim_groups['participant_count'] > 50)
+# Step 3: Calculate average total_messages
+avg_messages = filtered_groups['total_messages'].mean()
+# Step 4: Print the result
+print(round (avg_messages, 2))

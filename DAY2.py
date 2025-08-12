@@ -1,7 +1,7 @@
 import pandas as pd
 
 # -------------------------
-# Data (copy/paste dataset)
+# Data (dataset)
 # -------------------------
 dim_product = pd.DataFrame({
     'product_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -97,3 +97,4 @@ if high_perf.empty:
     print("No categories to show.")
 else:
     print(high_perf[['product_category', 'CTR', 'Pct_Diff']].to_string(index=False))
+
